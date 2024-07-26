@@ -4,6 +4,7 @@ import {dishReducer} from './DishSlice.ts';
 const store = configureStore({
   reducer: {
     dishes: dishReducer,
+    // client: clientReducer,
   }
 });
 
