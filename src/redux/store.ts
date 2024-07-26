@@ -1,10 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {dishReducer} from './DishSlice.ts';
+import {clientReducer} from './ClientSlice.ts';
 
 const store = configureStore({
   reducer: {
     dishes: dishReducer,
-    // client: clientReducer,
+    client: clientReducer,
   }
 });
 
