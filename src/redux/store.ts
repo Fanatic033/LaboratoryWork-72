@@ -1,7 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
+import {dishReducer} from './DishSlice.ts';
 
 const store = configureStore({
-  reducer: {}
+  reducer: {
+    dishes: dishReducer,
+  }
 });
 
 export default store;

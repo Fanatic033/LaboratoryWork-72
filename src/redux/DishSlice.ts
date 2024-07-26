@@ -1,25 +1,35 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {addDish} from './DishThunks.ts';
 
-export interface oneDish {
-  id: string;
-  title: string;
-  price: number;
-  image: string;
-}
 
 export interface DishState {
-  dishes: oneDish[];
   isLoading: boolean;
 }
 
 export const initialState: DishState = {
-  dishes: [],
   isLoading: false,
 };
+
+
 const dishSlice = createSlice({
   name: 'dishes',
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(addDish.pending,(state) =>{
+        state.isLoading = true
+      }).addCase(addDish.fulfilled,(state) => {
+        state.isLoading = false
+    }).addCase(addDish.rejected,(state) => {
+      state.isLoading = false
+    })
+  },
+  selectors:{
+    selectDishIsCreating: (state) => state.isLoading
+  }
 });
 
 export const dishReducer = dishSlice.reducer;
+
+export const  {selectDishIsCreating} = dishSlice.selectors;
