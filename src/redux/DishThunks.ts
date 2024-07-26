@@ -17,19 +17,22 @@ export const fetchDishes = createAsyncThunk<Dish[], void, { state: RootState }>(
       return [];
     }
     return Object.keys(dish).map((id) => ({
+      ...dish[id],
       id,
-      ...dish[id]
     }));
   }
 );
 
+export const editDish = createAsyncThunk<Dish, Dish, {
+  state: RootState
+}>('dishes/editDish', async (updatedDish) => {
+  const response = await axiosApi.put(`/dishes/${updatedDish.id}.json`, updatedDish);
+  return response.data;
+});
 
-// export const editDish = createAsyncThunk('dishes/editDish', async (updatedDish: oneDish) => {
-//   const response = await axiosApi.put(`/dishes/${updatedDish.id}`, updatedDish);
-//   return response.data;
-// });
-//
-// export const deleteDish = createAsyncThunk('dishes/deleteDish', async (dishId: string) => {
-//   await axiosApi.delete(`/dishes/${dishId}`);
-//   return dishId;
-// });
+export const deleteDish = createAsyncThunk<string, string, {
+  state: RootState
+}>('dishes/deleteDish', async (dishId: string) => {
+  await axiosApi.delete(`/dishes/${dishId}.json`);
+  return dishId;
+});

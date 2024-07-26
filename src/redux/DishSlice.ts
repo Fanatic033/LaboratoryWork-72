@@ -1,5 +1,5 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {addDish, fetchDishes} from './DishThunks.ts';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {addDish, deleteDish, editDish, fetchDishes} from './DishThunks.ts';
 import {Dish} from '../types.ts';
 
 
@@ -40,6 +40,23 @@ const dishSlice = createSlice({
       .addCase(fetchDishes.rejected, (state) => {
         state.isFetching = false;
       });
+    builder
+      .addCase(editDish.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editDish.fulfilled, (state, action: PayloadAction<Dish>) => {
+        state.isLoading = false;
+        const index = state.dishes.findIndex((dish) => dish.id === action.payload.id);
+        if (index !== -1) {
+          state.dishes[index] = action.payload;
+        }
+      })
+      .addCase(editDish.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(deleteDish.fulfilled,(state, action: PayloadAction<string>) => {
+        state.dishes = state.dishes.filter(dish => dish.id !== action.payload)
+      })
   },
   selectors: {
     selectDishIsCreating: (state) => state.isLoading,
