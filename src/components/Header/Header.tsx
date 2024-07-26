@@ -6,7 +6,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div className="container-fluid d-flex justify-content-between align-items-center">
           <div>
-            <a className="navbar-brand" href="#">Turtle Pizza Admin</a>
+            <a className="navbar-brand" href="/admin">Turtle Pizza Admin</a>
           </div>
           <div>
             <ul className="navbar-nav">

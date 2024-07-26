@@ -3,6 +3,11 @@ export interface ApiDish {
   price: string;
   image: string;
 }
+
 export interface ApiDishes {
   [key: string]: ApiDish;
+}
+
+export interface Dish extends ApiDish {
+  id: string;
 }

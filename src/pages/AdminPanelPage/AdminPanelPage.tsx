@@ -1,16 +1,10 @@
-import Header from '../../components/Header/Header';
-import {Link, Route, Routes} from 'react-router-dom';
-import DishesForm from '../../components/DishesForm/DishesForm.tsx';
+import {Link} from 'react-router-dom';
 
 const AdminPanelPage = () => {
   return (
     <>
-      <Header/>
-      <Routes>
-        <Route path="/admin/dishes" element={<AdminPanelPage/>}/>
-        <Route path="/admin/orders" element={<DishesForm/>}/>
-      </Routes>
-      <Link to={'/add-dish'}>
+      <h1 className={'text-center mt-5'}>Page For Administrator</h1>
+      <Link to={'/admin/add-dish'}>
         <button type={'button'}>Add new Dish</button>
       </Link>
     </>

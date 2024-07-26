@@ -12,7 +12,7 @@ import {toast} from 'react-toastify';
 const ContactForm = () => {
 
   const dispatch = useAppDispatch();
- const navigate = useNavigate();
+  const navigate = useNavigate();
   const isLoading = useAppSelector(selectDishIsCreating);
   const [formState, setFormState] = useState<ApiDish>({
     title: '',
@@ -32,7 +32,7 @@ const ContactForm = () => {
     e.preventDefault();
     try {
       await dispatch(addDish({...formState})).unwrap();
-      navigate('/admin')
+      navigate('/admin');
       toast.success('Dish Added');
     } catch (e) {
       toast.error('could not add dish',);
@@ -74,7 +74,7 @@ const ContactForm = () => {
           margin="normal"
         />
         <Button type="submit" variant="contained" color="primary" sx={{mt: 3}} className={'mb-5'} disabled={isLoading}>
-          Save{isLoading && <CircularProgress color='primary' size={20} className={'ms-3'}/>}
+          Save{isLoading && <CircularProgress color="primary" size={20} className={'ms-3'}/>}
         </Button>
 
         <Box sx={{mt: 2, textAlign: 'center'}}>
